@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html>
+<title>Machine Learning Methods for Interactive Search Interfaces and Cognitive Models</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Roboto", sans-serif;
+}
+.main {
+  margin-left: 250px;
+}
+.w3-container {
+  position: relative;
+}
+.w3-bar {
+  height: 100px;
+  position: relative;
+  z-index: 100;
+  left: 0px;
+  right: 0px;
+}
+.w3-bar-item {
+  white-space: nowrap;
+}
+.w3-sidebar {
+  width: 250px;
+  padding-top: 100px;
+  top: 0px;
+  bottom: 0px;
+  height: inherit;
+}
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+.figure {
+  margin-top: 40px;
+  clear: both;
+}
+
+.search-ui {
+  width: 1000px;
+  height: 700px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+.search-bar {
+  height: 50px;
+  clear: both;
+  padding: 5px;
+}
+.search-top {
+  height: 300px;
+  clear: both;
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  border-color: black;
+}
+.search-bottom {
+  height: 350px;
+  clear: both;
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  border-color: black;
+}
+.search-box-label {
+  font-size: 20px;
+  float: left;
+}
+.search-box {
+  width: 300px;
+  margin-left: 10px;
+  margin-right: 20px;
+  float: left;
+}
+.search-selection {
+  width: 20px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-right: 30px;
+  float: left;
+}
+.search-history {
+  width: 35%;
+  height: 100%;
+  float: left;
+  overflow-y: scroll;
+  padding: 5px;
+}
+.search-history-header {
+  font-size: 20px;
+}
+.search-model {
+  width: 35%;
+  height: 100%;
+  float: left;
+  overflow-y: scroll;
+  padding: 5px;
+}
+.search-model-header {
+  font-size: 20px;
+}
+.search-results {
+  width: auto;
+  height: 100%;
+  overflow-y: scroll;
+  border-style: solid;
+  border-width: 0px 0px 0px 1px;
+  border-color: black;
+  padding: 5px;
+}
+.search-item {
+  width: auto;
+  height: 100%;
+  overflow-y: scroll;
+  border-style: solid;
+  border-width: 0px 0px 0px 1px;
+  border-color: black;
+  padding: 5px;
+}
+.search-result-header {
+  font-size: 20px;
+}
+.search-result-title {
+  font-size: 15px;
+}
+.search-result-title:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+.search-result-text {
+  font-size: 15px;
+}
+.keyword-item {
+  clear: both;
+}
+.keyword-slider {
+  background-image: linear-gradient(to right, coral , palegreen);
+  width: 200px;
+  height: 10px;
+  margin-right: 20px;
+  margin-top: 5px;
+  float: right;
+}
+.keyword-item-name {
+  font-size: 15px;
+  float: left;
+}
+</style>
+<body>
+
+<div class="top" id="topbar">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <h4 class="w3-bar-item">
+      <b>Machine Learning Methods for Interactive Search Interfaces and Cognitive Models</b>
+      (<a href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">read the book</a>)
+      <br/>Online demonstration / D.Sc. (tech.) dissertation, Antti Kangasrääsiö, Aalto University, 2018
+    </h4>
+  </div>
+</div>
+
+<nav class="w3-sidebar w3-bar-block w3-large w3-theme-l5" id="sidebar">
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('int')">Introduction</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('pre')">Search AI Usability</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('cog')">Cognitive Model Inference</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('aut')">Author: Antti Kangasrääsiö</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="fullscreen()">Fullscreen</a>
+</nav>
+
+<div class="main" id="main">
+<div id="showbars" style="display: none; cursor: pointer;" onclick="showbars()"><u>Show menu</u></div>
+
+<div class="w3-container" id="int">
+<h1 class="w3-text-teal">Introduction</h1>
+<p>Human-computer interaction is experiencing a large change as the services and
+applications we use are becoming intelligent. User experience is increasingly
+dependant on mathematical models that adapt to the feedback and instructions
+provided by the user. For example, the search
+engines we use adjust their recommendations based on our search history, and
+social media platforms select the displayed content based on a model of our
+interests. It is likely that in the future the vast majority of our services
+will become personalised.</p>
+
+<p>This doctoral dissertation examines modern user modeling from two perspectives.
+The first focuses on search engines that perform online modelling
+of the user's interests. Such systems may suffer from
+various usability defects, such as difficulties in predicting how the user model
+and the search results will change in response to user actions.
+This is due to the user's mental model being unable to adequately approximate the dynamic behaviour
+of the search system.
+In order to
+improve the usability of such machine learning -heavy systems, methods are
+developed to improve the predictability of interaction, ability of the user to
+control the system, and ability of the user to detect possible interaction errors.
+The methods are shown to improve the usability of such search systems.</p>
+
+<p>The second perspective focuses on learning more accurate and expressive user
+models. Common user models tend to be quite simple, due to the fact that
+automated inference is challenging for more complex models. For example, user
+interests are commonly predicted using simple regression or matrix completion
+models, which represent the user simply as a static probability distribution
+without any capability for strategic thinking or learning. It is likely that
+more expressive user models could enable more accurate predictions of the
+user's interest, or allow more suitable personalisation for each user. To lay
+groundwork for this goal, the dissertation proposes an inference method based
+on repeated simulations, which allows inference even for complex user models
+that are not amenable for traditional gradient-based inference methods. The
+method is shown to work well with modern reinforcement learning based user models,
+as well as models commonly used in cognitive science.</p>
+</div>
+
+<div class="w3-container" id="usa" style="display: none;">
+<h1 class="w3-text-teal">Search AI Usability</h1>
+
+<h2 class="w3-text-teal">Toy Search Engine</h2>
+<div class="search-ui" id="search-ui">
+  <div class="search-bar" id="search-bar">
+      <div class="search-box-label" id="search-box-label">Search:</div>
+      <input type="text" class="search-box" id="search-box" value="printer"></input>
+      <div class="search-box-label" id="search-box-label">Show model</div>
+      <input type="checkbox" class="search-selection" id="show-model-checkbox" onclick="toggle_show_model()" checked></input>
+      <div class="search-box-label" id="search-box-label">Show predictions</div>
+      <input type="checkbox" class="search-selection" id="show-predictions-checkbox" onclick="toggle_show_predictions()" checked></input>
+      <div class="search-box-label" id="search-box-label">Added control</div>
+      <input type="checkbox" class="search-selection" id="use-control-checkbox" onclick="toggle_use_control()" checked></input>
+  </div>
+  <div class="search-top" id="search-top">
+    <div class="search-history" id="search-history"></div>
+    <div class="search-results" id="search-results">
+      <div class="search-result-header">No results</div>
+    </div>
+  </div>
+  <div class="search-bottom" id="search-bottom">
+    <div class="search-model" id="search-model"></div>
+    <div class="search-item" id="search-item"></div>
+  </div>
+</div>
+<p>(Dragging of sliders works best with a mouse)</p>
+
+<h2 class="w3-text-teal">Model Visualization</h2>
+<p>
+It is common that intelligent systems rely on a user model for personalizing
+the user experience. However, only few systems actually allow the user to see
+or interact with the model. The toy search engine above allows you to see and
+interact with the search user model to explore the opportunities provided by
+direct access to the user model. This is called <i>interactive user modelling</i>.
+</p>
+<p>
+In the context of search, one added benefit of interaction with the user model is
+that it allows one to take small local steps in the search space. In comparison,
+it might be more challenging to make these small steps when the only interaction
+method is to manually alter the keyword query.
+</p>
+<p>
+Visualizing the user model also has an effect on trust. Trust has a significant
+influence on how the user actually uses the system; poor trust may cause the
+user to abandon the system, even though using it would lead to superior results.
+In interactive user modelling the user is able to inspect the user model, which
+likely increases the trust in the system.
+</p>
+<p>
+The visualized model also has an effect on the user's mental model of the system
+behavior. Interactive user modelling is likely to improve the accuracy of the
+mental model the user has of the system, as the user has more relevant
+information available.
+</p>
+
+
+<h2 class="w3-text-teal">Interaction Predictability</h2>
+<p>
+Just because the user can see the model does not mean that the user can predict
+how her behavior will change the model. This means that a distinction needs to
+be made regarding the interpretability of the <i>model state</i> and the
+interpretability of <i>model dynamics</i>. A visualized model has an interpretable
+state if the user can aswer questions such as "what are the features of the
+current model that have the largest effect on the predictions the model makes?"
+In comparison, the visualized model has interpretable dynamics if the user can
+answer to questions such as "how would the most important features of the model
+change if I would give this or that feedback?"
+</p>
+<p>
+However, there is an easy way to make an interpretable model also dynamically
+interpretable: use the existing visualization to communicate predicted future
+model state while the user is deciding the value of the next feedback. This is
+demonstrated in the toy search engine, where predicted changes to the keyword
+weights are show while the user is deciding what feedback value to give for a
+certain keyword.
+</p>
+
+
+<h2 class="w3-text-teal">Model Controllability</h2>
+<p>
+One problem with controllability of the model is that the effect of additional
+feedback diminishes as the size of the observation dataset increases. In general,
+there is no guarantee that the feedback given by the user will have an effect
+of certain size to the model predictions, as the predictions are conditional to
+all previous feedback as well.
+</p>
+<p>
+One approach to improving predictability is to alter the user model dynamics so
+that controllability is guaranteed to some degree in all situations. How this is
+done in practice is that instead of treating user feedback simply as "one more
+data point", it is treated as a requirement for the next model state. Thus we can
+use an optimization algorithm for choosing what feedback should be added to the
+model training dataset to achieve the end state desired by the user. This
+behavior is also demonstrated in the toy search engine, although it is best
+observable when there is a large amount of existing feedback.
+</p>
+
+<h2 class="w3-text-teal">Feedback Visualization</h2>
+<p>
+As discussed above, the resulting model behavior is a function of the entire
+training dataset. However, the training data may contain data that is either
+wrong, due to user errors, or deprecated, due to changes in the interests of
+the user.
+</p>
+<p>
+One way to make the user aware of the entire modelling context, and to enable
+the user find and correct errors in the data, is to visualize the training data
+to the user and allow interaction with it. In addition to this, the accuracy of
+each observation can be estimated and visualized to the user. By making outlying
+observations salient to the user, it is easier for the user to find and correct
+possible errors in the data. This is demonstrated in the toy search engine by
+the yellow backgrounds of feedback that can't be adequately explained by the model.
+</p>
+
+<h2 class="w3-text-teal">Relevant Publications</h2>
+<p>
+Antti Kangasrääsiö, Dorota Głowacka, and Samuel Kaski.
+<b>Improving Controllability and Predictability of Interactive Recommendation Interfaces for Exploratory Search</b>.
+In <i>Proceedings of the 20th International Conference on Intelligent User Interfaces</i>, IUI'15, pp. 247-251. ACM, 2015.
+<a href="http://dl.acm.org/citation.cfm?doid=2678025.2701371">[access publication]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_postprint.pdf">[PDF]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_slides.pdf">[slides]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_video.mp4">[video]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_reviews.txt">[reviews]</a>
+<a href="https://research.aalto.fi/en/publications/improving-controllability-and-predictability-of-interactive-recommendation-interfaces-for-exploratory-search(0646a28f-e834-4c4e-a97e-29a92d7851e0).html">[publication info]</a>
+<a href="http://iui.acm.org/2015/index.html">[conference web page]</a>
+</p>
+<p>Antti Kangasrääsiö, Yi Chen, Dorota Glowacka, and Samuel Kaski.
+<b>Interactive Modeling of Concept Drift and Errors in Relevance Feedback</b>.
+In <i>Proceedings of the 24th Conference on User Modeling, Adaptation and Personalization</i>, UMAP'16, pp. 185-193. ACM, 2016.
+<a href="http://dx.doi.org/10.1145/2930238.2930243">[access publication]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_postprint.pdf">[PDF]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_poster.pdf">[poster]</a>
+<a href="http://arxiv.org/abs/1603.02609">[preprint]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_reviews.txt">[reviews]</a>
+<a href="https://research.aalto.fi/en/publications/interactive-modeling-of-concept-drift-and-errors-in-relevance-feedback(e51c41e3-e245-4d57-afa0-1d181f6c1329).html">[publication info]</a>
+<a href="http://www.um.org/umap2016/">[conference web page]</a>
+</p>
+
+<h2 class="w3-text-teal">Toy Search Engine FAQ</h2>
+<p>
+<b>What is the search data?</b><br/>
+Test data (scikit-learn) for the 20Newsgroups dataset for the <i>comp.*</i> groups.
+</p>
+<p>
+<b>The search engine doesn't react to my query?</b><br/>
+The search engine has a very limited index, and can only search for words that
+exist in the index. Try some generic IT-related words.
+</p>
+<p>
+<b>What is the search user model?</b><br/>
+Ridge regression for estimating keyword weights based on feedback and their
+occurence in the search documents. Vector space model for estimating document
+relevance based on keyword relevance.
+</p>
+<p>
+<b>Why is the search engine sometimes slow?</b><br/>
+It's a toy model with no optimizations intended for quick demonstration of
+certain usability concepts. All computations are performed in your browser.
+</p>
+<p>
+<b>Is the source code available?</b><br/>
+In <a href="https://github.com/akangasr/dissertationdemo">GitHub</a>.
+</p>
+</div>
+
+<div class="w3-container" id="cog" style="display: none;">
+<h1 class="w3-text-teal">Cognitive Model Inference</h1>
+
+<h2 class="w3-text-teal">Cognitive Models</h2>
+<p>
+Cognitive models are a subset of user models distinguished by the explicit
+assumptions they make regarding the cognitive processes or capabilities of
+the user. That is, instead of simply fitting a regression model to the
+observations of the user behavior, the user is viewed as an intelligent and
+(mostly) rational decision-maker, with capabilities such as memory, vision,
+and ability to learn. These models, developed earlier mostly in the field of
+cognitive science, are the most credible computational representation we
+currently have of human cognition.
+</p>
+<p>
+There are multiple motivating reasons for bringing these models out from the
+laboratories and incorporating them into interactive systems. First of all, they
+could offer superior predictions of user interests, goals and cognitive
+capabilities. These predictions could then allow the user interface and user
+experience to be personalized to each user in much higher detail than previously.
+For example, search results could be visualized differently for users who are
+fast at visual search, compared to those who are slower. Or users who are conducting
+exploratory search could be shown a different search interface than users who are
+performing directed known-item search.
+</p>
+
+<h2 class="w3-text-teal">Challenges with Inference</h2>
+<p>
+However, before cognitive models can be applied in real systems, efficient
+automated inference methods need to be developed. Cognitive models often have a
+large number of parameter values that affect the predictions made with the models.
+Inference means finding suitable values for these parameters, such that the
+predictions made with the model agree with human behavior in the real world.
+Inference is often done by collecting a large amount of observation data from
+user experiments and then optimizing the parameter values to predict well on
+this data.
+</p>
+<p>
+The main challenge with optimizing the parameter values of cognitive models is
+that the mathematical relation between the parameter values and the model
+predictions -- the <i>likelihood function</i> -- is often very complex and
+computationally expensive, or even practically impossible, to evaluate.
+Because of this, many common optimization approaches, such as gradient
+descent, can not be applied to cognitive model parameter inference.
+</p>
+
+<h2 class="w3-text-teal">Approximate Bayesian Computation and Bayesian Optimization</h2>
+<p>
+While the likelihood function is too expensive to be optimized directly, we can
+optimize a surrogate function that is closely related to it: the model prediction
+error. This is intuitive, as parameter values with high likelihood should lead
+to more accurate predictions, and vice versa. Technically, the Approximate Bayesian
+computation (ABC) framework provides us with the theory for approximating the
+likelihood function using only prediction errors.
+</p>
+<p>
+However, generating predictions from the model with various parameter value
+combinations may still be computationally expensive, and the predictions often
+contain stochastic noise as well. However, we can address these concerns by using
+Bayesian optimization (BO), which is a method designed precisely for optimizing
+stochastic and computationally expensive functions.
+</p>
+<p>
+By combining ABC and BO, we get an inference framework that is able to estimate
+the likelihood of cognitive model parameter values, which is applicable to
+practically all modern cognitive models. A notable benefit of the approach is that it
+also provides estimates of the parameter uncertainty across the parameter space,
+and not just a point-estimate of the most likely parameter value combination.
+This is a significant improvement to the previous state-of-the-art, which
+comprised of manual tuning, grid search and various point-estimation methods
+that did not provide any estimates of parameter uncertainty.
+</p>
+<img src="abc.gif" alt="ABC inference process animation" class="figure"/>
+<p>
+The above animation illustrates how the inference process works. Parameter values
+to be evaluated are selected by the BO acquisition function. Predictions are
+generated from the model using these parameters. The discrepancy between the
+predictions and the observations (prediction error) is evaluated. The Gaussian
+process (GP) regression model for predicting discrepancy across the parameter space
+is updated based on the new observation, and the process continues. Parameter
+likelihood is estimated from the GP regression model.
+</p>
+<img src="abc.png" alt="ABC inference results" class="figure"/>
+<p>
+The plots above show the inference results for three parameters of a cognitive
+model for visual search. The plotted value is the posterior probability
+(the likelihood multiplied by prior probability). The posterior is well
+identified, and the results are easy to interpret. Furthermore, the as the results
+are in the form of a probability distribution, they can be used as a prior in a
+follow-up study.
+</p>
+<img src="grid.png" alt="Grid search inference results" class="figure"/>
+<p>
+In comparison, the plots above show the inference results from grid search using
+similar amount of computational resources. The shape of the function near its
+optimum is not equally well defined due to sample locations being spread out
+equally all over the parameter space. The results are not equally easy to
+interpret, and prior knowledge of credible parameter values can not be easily
+incorporated in the inference process. For example, the fixation duration
+parameter on the bottom left has inferred value of 175 milliseconds, which is
+very low when compared to the known average duration of 250 ms.
+</p>
+
+<h2 class="w3-text-teal">Relevant Publications</h2>
+<p>
+Antti Kangasrääsiö, Samuel Kaski.
+<b>Inverse Reinforcement Learning from Summary Data.</b>
+<i>Machine Learning</i>, vol. 107, pp. 1517-1535, 2018.
+<a href="https://doi.org/10.1007/s10994-018-5730-4">[access publication]</a>
+<a href="https://rdcu.be/14lt">[PDF]</a>
+<a href="https://arxiv.org/abs/1703.09700">[preprint]</a>
+-- presented in ECML PKDD 2018 journal track as plenary talk and poster
+<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_slides.pdf">[slides]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_poster.pdf">[poster]</a>
+<a href="http://www.ecmlpkdd2018.org/">[conference web page]</a>
+</p>
+<p>
+Antti Kangasrääsiö, Jussi P.P. Jokinen, Antti Oulasvirta, Andrew Howes, Samuel Kaski.
+<b>Parameter Inference for Computational Cognitive Models with Approximate Bayesian Computation</b>
+In review, 2018.
+<a href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">[manuscript in dissertation]</a>
+</p>
+<p>
+Antti Kangasrääsiö, Kumaripaba Athukorala, Andrew Howes, Jukka Corander, Samuel Kaski, Antti Oulasvirta.
+<b>Inferring Cognitive Models from Data using Approximate Bayesian Computation.</b>
+<i>In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems</i>, CHI'17, pp. 1295-1306. ACM, 2017.
+<a href="http://dl.acm.org/citation.cfm?id=3025576">[access publication]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/CHI2017_slides.pdf">[slides]</a>
+<a href="https://arxiv.org/abs/1612.00653">[preprint]</a>
+<a href="https://users.ics.aalto.fi/akangasr/publications/CHI2017_reviews.txt">[reviews]</a>
+<a href="https://research.aalto.fi/en/publications/inferring-cognitive-models-from-data-using-approximate-bayesian-computation(8bab3e91-13e0-4492-8eba-da42f63dee67).html">[publication info]</a>
+<a href="https://chi2017.acm.org/">[conference web page]</a>
+</p>
+<p>
+Jarno Lintusaari, Henri Vuollekoski, Antti Kangasrääsiö, Kusti Skytén, Marko Järvenpää, Michael Gutmann, Aki Vehtari, Jukka Corander, Samuel Kaski.
+<b>ELFI: Engine for Likelihood Free Inference.</b>
+<i>Journal of Machine Learning Research</i>, vol. 19, (16):1-7, 2018.
+<a href="http://www.jmlr.org/papers/volume19/17-374/17-374.pdf">[access publication]</a>
+<a href="https://arxiv.org/abs/1708.00707">[preprint]</a>
+<a href="http://www.jmlr.org/papers/v19/">[journal volume]</a>
+</p>
+
+<h2 class="w3-text-teal">Relevant Software</h2>
+<p>
+Engine for Likelihood-Free Inference (ELFI)
+<a href="https://elfi.readthedocs.io/en/latest/">[documentation]</a>
+<a href="https://github.com/elfi-dev/elfi">[source]</a>
+</p>
+<p>
+Extensions / experiment repositories related to the above publications:
+</br>
+* ELFI experiment framework
+<a href="https://github.com/akangasr/elfie">[source]</a>
+<br/>
+* ELFI reinforcement learning extension
+<a href="https://github.com/akangasr/elfirl">[source]</a>
+<br/>
+* ELFI cognitive model inference experiment
+<a href="https://github.com/akangasr/cogsciabc">[source]</a>
+<br/>
+(NB: these are not actively maintained any more and may depend on an old version of the main ELFI library)
+</p>
+
+</div>
+
+
+<div class="w3-container" id="aut" style="display: none;">
+<h1 class="w3-text-teal">Author: Antti Kangasrääsiö</h1>
+<p>
+<b>Contact</b><br/>
+firstname.lastname@iki.fi
+</p>
+<p>
+<b>Links</b><br/>
+<a href="https://users.ics.aalto.fi/akangasr/">Research home page</a><br/>
+<a href="https://scholar.google.fi/citations?user=MvO_azMAAAAJ">Google Scholar</a><br/>
+<a href="https://www.linkedin.com/in/antti-kangasr%C3%A4%C3%A4si%C3%B6-5b1a1592">LinkedIn</a>
+</p>
+<p>
+<b>Currently working at <a href="http://cai.fi/">Curious AI</a>, Helsinki</b><br/>
+Productization of AI related to system identification and control, natural
+language understanding and user interaction with said systems.
+</p>
+<p>
+<b>Doctor of Science (Tech.), 2018 (hopefully)</b><br/>
+Studied the usability of machine learning powered systems and inference of
+complicated user models with intractable likelihoods. Member of the
+<a href="https://research.cs.aalto.fi/pml/">Probabilistic Machine Learning
+research group</a>.
+</p>
+<p>
+<b>Master of Science (Tech.), 2013</b><br/>
+Studied the agent-based modelling of complex decentralized systems, such as
+the dynamics of recyclables markets and frequency control in smart grids. Also
+mobile robotics, control theory, and computer systems in factory automation.
+</p>
+<p>
+<b>Bachelor of Science (Tech.), 2011</b><br/>
+Studied maths, control theory, programming languages and factory automation.
+I did my thesis on methods of adaptive control.
+</p>
+</div>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vectorious/4.8.1/vectorious.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+var page_elements = {
+  int: document.getElementById('int'),
+  pre: document.getElementById('usa'),
+  cog: document.getElementById('cog'),
+  aut: document.getElementById('aut')
+}
+
+function display_page(page) {
+  Object.keys(page_elements).map(function(key, index) {
+    if (key == page) {
+      page_elements[key].style.display = 'block';
+    } else {
+      page_elements[key].style.display = 'none';
+    }
+  });
+}
+
+function fullscreen() {
+  document.getElementById('sidebar').style.display = 'none';
+  document.getElementById('topbar').style.display = 'none';
+  document.getElementById('main').style.marginLeft = '0px';
+  document.getElementById('showbars').style.display = 'block';
+}
+
+function showbars() {
+  document.getElementById('sidebar').style.display = 'block';
+  document.getElementById('topbar').style.display = 'block';
+  document.getElementById('main').style.marginLeft = '250px';
+  document.getElementById('showbars').style.display = 'none';
+}
+
+// GLOBALS
+
+var DATA = undefined;
+var FEATURES = undefined;
+var VOCABULARY = undefined;
+var FEEDBACK = undefined;
+var MODEL = undefined;
+var MODEL0 = undefined;
+var MODEL1 = undefined;
+var CURRENT_FEATURE = undefined;
+
+var USE_CONTROL = true;
+var SHOW_PREDICTIONS = true;
+
+var CONTROL_TOLERANCE = 0.1;
+var CONTROL_ITERATIONS = 4;
+var CONTROL_DELTA_SCALE = 2.0;
+var FB_ERROR_POW = 1;
+var FB_ERROR_SCALE = 500;
+var MODEL_FEATURE_THRESHOLD = 0.1;
+var MODEL_RIDGE = 0.1;
+var MODEL_KEYWORDS_VISIBLE = 20;
+var SEARCH_RESULTS_VISIBLE = 40;
+
+// DATA LOADING
+
+console.log("Loading data..");
+var request = $.getJSON("data.json", function() {
+  console.log("Processing data..");
+  DATA = Array.from(request.responseJSON.data).map(function(item) {
+    return {
+      text: item.text,
+      features: item.features.map(function(feature) {
+        return {
+          idx: parseInt(feature.idx),
+          value: parseFloat(feature.value)
+        }
+      })
+    }
+  });
+  VOCABULARY = Array.from(request.responseJSON.vocabulary);
+  FEATURES = Matrix.zeros(VOCABULARY.length, DATA.length);
+  DATA.map(function(item, idx) {
+    item.features.map(function(feature) {
+      FEATURES.set(feature.idx, idx, feature.value);
+    });
+  });
+  console.log("Data loaded");
+})
+
+// UPDATING
+
+function update_all() {
+  if (USE_CONTROL) {
+    var value = train_model_control(FEEDBACK);
+    MODEL = value[0];
+    FEEDBACK = value[1];
+  } else {
+    MODEL = train_model(FEEDBACK);
+  }
+  display_history(FEEDBACK, MODEL);
+  display_model(MODEL);
+  display_search_results(MODEL);
+  clear_search_item();
+}
+
+function remove_feedback_and_update(fb_id) {
+  if (FEEDBACK.length > 1) {
+    FEEDBACK.splice(fb_id,1);
+    update_all();
+  } else {
+    console.log("Can't remove last feedback");
+  }
+}
+
+// MODEL TRAINING
+
+function train_pred_models(feedback, kw_idx, fb_idx=undefined) {
+  fb0 = feedback.slice();
+  fb1 = feedback.slice();
+  if (fb_idx !== undefined) {
+    fb0[fb_idx] = {feature:kw_idx,value:-1.0,weight:1.0};
+    fb1[fb_idx] = {feature:kw_idx,value:1.0,weight:1.0};
+  } else {
+    fb0.push({feature:kw_idx,value:-1.0,weight:1.0});
+    fb1.push({feature:kw_idx,value:1.0,weight:1.0});
+  }
+  return [train_model(fb0), train_model(fb1)]
+}
+
+function train_model_control(fb) {
+  let last_idx = fb.length - 1;
+  let ref_fb = fb[last_idx];
+  if (ref_fb.weight > 1.0) {
+    // don't re-control
+    let model = train_model(fb);
+    return [model, fb];
+  }
+  for (let i = 0; i < CONTROL_ITERATIONS; i++) {
+    var model = train_model(fb);
+    let err = model.Yhat.get(ref_fb.feature, 0) - ref_fb.value;
+    if (Math.abs(err) > CONTROL_TOLERANCE) {
+      console.log("Control error: " + err.toFixed(3));
+      ref_fb.weight = ref_fb.weight * CONTROL_DELTA_SCALE;
+      fb[last_idx] = ref_fb;
+    } else {
+      console.log("Control error within tolerance");
+      return [model, fb];
+    }
+  }
+  return [model, fb];
+}
+
+function train_model(fb) {
+  console.log("Training model..");
+  // compiling matrices
+  let X = Matrix.zeros(fb.length, DATA.length);
+  let S = Matrix.identity(fb.length);
+  let Y = Matrix.zeros(fb.length, 1);
+  fb.map(function(fb_item, row) {
+    let feature_idx = fb_item.feature;
+    for (let i = 0; i < DATA.length; i++) {
+      let fv = FEATURES.get(feature_idx, i);
+      if (fv > 0) {
+        X.set(row, i, fv);
+      }
+    }
+    S.set(row, row, fb_item.weight);
+    Y.set(row, 0, fb_item.value);
+  });
+  // collecting near-zero features
+  var skipcols = [];
+  var threshold = MODEL_FEATURE_THRESHOLD;
+  range(DATA.length).map(function(col) {
+    var sum = 0;
+    range(fb.length).map(function(row) {
+      sum += X.get(row, col);
+    })
+    if (sum < threshold) {
+      skipcols.push(col);
+    }
+  })
+  // removing near-zero features
+  let Xs = Matrix.zeros(fb.length, DATA.length-skipcols.length);
+  fb.map(function(fb_item, row) {
+    let cols_skipped = 0;
+    for (let i = 0; i < DATA.length; i++) {
+      if (skipcols.includes(i)) {
+        cols_skipped += 1;
+        continue;
+      }
+      let fv = X.get(row, i);
+      if (fv > 0) {
+        Xs.set(row, i-cols_skipped, fv);
+      }
+    }
+  });
+  // training model
+  let XtS = Xs.transpose().multiply(S);
+  let Id = Matrix.identity(DATA.length-skipcols.length).scale(MODEL_RIDGE);
+  let XtSXId = XtS.multiply(Xs).add(Id);
+  let XtSY = XtS.multiply(Y);
+  let Ws = XtSXId.solve(XtSY);
+  // adding zeroes for near-zero features
+  let W = Matrix.zeros(DATA.length, 1);
+  cols_skipped = 0;
+  range(DATA.length).map(function(col) {
+    if (skipcols.includes(col)) {
+      W.set(col, 0, 0);
+      cols_skipped += 1;
+    } else {
+      W.set(col, 0, Ws.get(col-cols_skipped, 0));
+    }
+  });
+  // compute keyword weights
+  let Yhat = FEATURES.multiply(W);
+  return {
+    W: W,
+    Yhat: Yhat
+  };
+}
+
+function generate_initial_feedback(query) {
+  console.log("Generating initial feedback..");
+  let words = query.split(' ');
+  let ret = [];
+  words.map(function(word) {
+    let voc_idx = VOCABULARY.indexOf(word);
+    if (voc_idx > -1) {
+      console.log("Term '" + word + "' found in index");
+      ret.push({feature:voc_idx,value:1.0,weight:1.0})
+    } else {
+      console.log("Term '" + word + "' not found in index");
+    }
+  });
+  return ret;
+}
+
+// UTILS
+
+function arg_max(array) {
+  return array.map((x, i) => [x, i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
+}
+
+function descending_sorted_index(arr) {
+  let arr_idx = arr.map(function(v, i) {
+    return {i:i, v:v}
+  });
+  arr_idx.sort(function(a,b) {
+    if (a.v < b.v) {
+      return 1;
+    }
+    if (a.v > b.v) {
+      return -1;
+    }
+    return 0;
+  });
+  return arr_idx.map(function(o) {
+    return o.i;
+  })
+}
+
+function range(n) {
+  var x = [];
+  if (n === 0) {
+    return x;
+  }
+  var i = 0;
+  while (x.push(i++) < n) {};
+  return x;
+}
+
+// UI INPUTS
+
+function toggle_show_model() {
+  if (document.getElementById('show-model-checkbox').checked) {
+      document.getElementById('search-model').style.visibility = 'visible';
+      document.getElementById('search-history').style.visibility = 'visible';
+  } else {
+      document.getElementById('search-model').style.visibility = 'hidden';
+      document.getElementById('search-history').style.visibility = 'hidden';
+  }
+}
+
+function toggle_show_predictions() {
+  if (document.getElementById('show-predictions-checkbox').checked) {
+      SHOW_PREDICTIONS = true;
+  } else {
+      SHOW_PREDICTIONS = false;
+  }
+}
+
+function toggle_use_control() {
+  if (document.getElementById('use-control-checkbox').checked) {
+      USE_CONTROL = true;
+  } else {
+      USE_CONTROL = false;
+  }
+}
+
+$('#search-box').keypress(function(event) {
+  if (event.keyCode == 13 || event.which == 13) {
+    let query = document.getElementById('search-box').value;
+    FEEDBACK = generate_initial_feedback(query);
+    if (FEEDBACK.length == 0) {
+      console.log("Failed to initialize model");
+      return;
+    }
+    update_all();
+  }
+});
+
+// UI OUTPUTS
+
+function display_search_results(model) {
+  let searchResultsDiv = document.getElementById("search-results");
+  searchResultsDiv.innerHTML = '';
+  let para = document.createElement("div");
+  para.innerHTML = 'Top results:';
+  para.className = "search-result-header";
+  searchResultsDiv.appendChild(para);
+  let scores = FEATURES.transpose().multiply(model.Yhat);
+  let results = descending_sorted_index(scores.transpose().toArray()[0]).slice(0,SEARCH_RESULTS_VISIBLE);
+  results.map(function(id) {
+    para = document.createElement("p");
+    para.className = "search-result-title";
+    let subject = DATA[id].text.match(/Subject: ([^\n\r]*)/)[1];
+    para.innerHTML = subject;
+    para.onclick = function() {
+      display_search_item(id);
+    }
+    searchResultsDiv.appendChild(para);
+  })
+}
+
+function clear_search_item() {
+  let searchItemDiv = document.getElementById("search-item");
+  searchItemDiv.innerHTML += '';
+}
+
+function display_search_item(item_id) {
+  let searchItemDiv = document.getElementById("search-item");
+  searchItemDiv.innerHTML = '';
+  let para = document.createElement("div");
+  para.className = "search-result-text";
+  let text = DATA[item_id].text.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+  para.innerHTML = text;
+  searchItemDiv.appendChild(para);
+}
+
+function display_history(feedback, model) {
+  let historyDiv = document.getElementById("search-history");
+  historyDiv.innerHTML = '';
+  let para = document.createElement("div");
+  para.innerHTML = 'Feedback:';
+  para.className = "search-history-header";
+  historyDiv.appendChild(para);
+  feedback.map(function(fb, idx) {
+    let pred_weight = model.Yhat.get(fb.feature, 0);
+    create_keyword_element_to(historyDiv, fb.feature, fb.value, 'history', idx, pred_weight);
+  })
+}
+
+
+function display_model(model) {
+  let modelDiv = document.getElementById("search-model");
+  modelDiv.innerHTML = '';
+  let para = document.createElement("div");
+  para.innerHTML = 'Model:';
+  para.className = "search-model-header";
+  modelDiv.appendChild(para);
+  let idx = descending_sorted_index(model.Yhat.transpose().toArray()[0]);
+  idx.slice(0,MODEL_KEYWORDS_VISIBLE).map(function(i) {
+    create_keyword_element_to(modelDiv, i, model.Yhat.get(i, 0), 'model');
+  })
+}
+
+function update_keyword_elements(feedback, model) {
+  $("div").map(function() {
+      if(this.id.match(/keyword-slider-model/)) {
+        let kw_idx = parseInt($(this).attr('kw_idx'));
+        if (kw_idx === CURRENT_FEATURE) {
+          return;
+        }
+        let pred_value = model.Yhat.get(kw_idx, 0);
+        $(this).slider({
+          value: Math.max(-10, Math.min(10, parseInt(10.0*pred_value)))
+        });
+      }
+      if(this.id.match(/keyword-div-history/)) {
+        let value = parseFloat($(this).attr('fb_val'));
+        let kw_idx = parseInt($(this).attr('kw_idx'));
+        let pred_value = model.Yhat.get(kw_idx, 0);
+        let c = color_for_error(value-pred_value);
+        $(this).children().first().css("backgroundColor", c);
+      }
+  });
+}
+
+function color_for_error(err) {
+  let e = Math.pow(err, FB_ERROR_POW);
+  let c = 255 - parseInt(Math.min(255, e*FB_ERROR_SCALE));
+  return "rgb(255,255,"+c+")";
+}
+
+function create_keyword_element_to(parent, kw_idx, value, type, fb_idx=undefined, pred_value=undefined) {
+  let div = document.createElement("div");
+  div.className = "keyword-item";
+  let kw_name = VOCABULARY[kw_idx];
+  let text = document.createElement("div");
+  text.setAttribute("class", "keyword-item-name");
+  if (fb_idx !== undefined) {
+    text.setAttribute("onclick", "remove_feedback_and_update(" + fb_idx + ")");
+    text.setAttribute("title", "Click to remove feedback");
+    text.style.cursor = "pointer";
+  }
+  text.innerHTML = kw_name;
+  let div_id = "keyword-div-" + type + '-' + kw_name + '-' + parseInt(Math.random()*1000000);
+  let slider_id = "keyword-slider-" + type + '-' + kw_name + '-' + parseInt(Math.random()*1000000);
+  if (pred_value) {
+    let c = color_for_error(value-pred_value);
+    text.style.backgroundColor = c;
+    div.setAttribute("fb_val", value);
+    div.setAttribute("id", div_id);
+    div.setAttribute("kw_idx", kw_idx);
+  }
+  let slider = document.createElement("div");
+  slider.setAttribute("id", slider_id);
+  slider.setAttribute("kw_idx", kw_idx);
+  slider.setAttribute("class", "keyword-slider");
+  div.appendChild(text);
+  div.appendChild(slider);
+  parent.appendChild(div);
+  $(function() {
+    $("#" + slider_id).slider({
+      min: -10,
+      max: 10,
+      value: Math.max(-10, Math.min(10, parseInt(10.0*value))),
+      start: function( event, ui ) {
+        if (SHOW_PREDICTIONS) {
+          CURRENT_FEATURE = kw_idx;
+          var value = train_pred_models(FEEDBACK, kw_idx, fb_idx);
+          if (CURRENT_FEATURE === kw_idx) {
+            MODEL0 = value[0];
+            MODEL1 = value[1];
+          }
+        }
+      },
+      slide: function( event, ui ) {
+        if (MODEL0 === undefined || MODEL1 === undefined) {
+          return;
+        }
+        let scale1 = (1.0+ui.value/10.0)/2.0;
+        let scale0 = 1.0 - scale1;
+        let W0s = new Matrix(MODEL0.W)
+        W0s.scale(scale0)
+        let W1s = new Matrix(MODEL1.W)
+        W1s.scale(scale1)
+        let Yhat0s = new Matrix(MODEL0.Yhat)
+        Yhat0s.scale(scale0)
+        let Yhat1s = new Matrix(MODEL1.Yhat)
+        Yhat1s.scale(scale1)
+        pred_model = {
+          W: W0s.add(W1s),
+          Yhat: Yhat0s.add(Yhat1s)
+        }
+        update_keyword_elements(FEEDBACK, pred_model);
+        display_search_results(pred_model);
+      },
+      stop: function( event, ui ) {
+        MODEL0 = undefined;
+        MODEL1 = undefined;
+        CURRENT_FEATURE = undefined;
+        let fb = {feature:kw_idx,value:ui.value/10.0,weight:1.0};
+        if (fb_idx !== undefined) {
+          if (FEEDBACK.length > 1) {
+            FEEDBACK.splice(fb_idx,1);
+            FEEDBACK.push(fb);
+          } else {
+            FEEDBACK[fb_idx] = fb;
+          }
+        } else {
+          FEEDBACK.push(fb);
+        }
+        update_all();
+      }
+    });
+  });
+}
+
+</script>
+
+</body>
+</html>
