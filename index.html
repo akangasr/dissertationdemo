@@ -21,6 +21,7 @@ html,body,h1,h2,h3,h4,h5,h6 {
 }
 .w3-bar {
   height: 100px;
+  overflow-x: scroll;
   position: relative;
   z-index: 100;
   left: 0px;
@@ -230,10 +231,10 @@ p {
 </div>
 
 <nav class="w3-sidebar w3-bar-block w3-large w3-theme-l5" id="sidebar">
-  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('int')">Introduction</a>
-  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('pre')">Search AI Usability</a>
-  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('cog')">Cognitive Model Inference</a>
-  <a class="w3-bar-item w3-button w3-hover-black" onclick="display_page('aut')">Author: Antti Kangasrääsiö</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('intro')">Introduction</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('usability')">Search AI Usability</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('cognitive')">Cognitive Model Inference</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('author')">Author: Antti Kangasrääsiö</a>
   <a
     class="w3-bar-item w3-button w3-hover-black"
     href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">
@@ -245,7 +246,7 @@ p {
 <div class="main" id="main">
 <div id="showbars" style="display: none; cursor: pointer;" onclick="showbars()"><u>Show menu</u></div>
 
-<div class="w3-container" id="int">
+<div class="w3-container" id="intro">
 <h1 class="w3-text-teal">Introduction</h1>
 <p>Human-computer interaction is experiencing a large change as the services and
 applications we use are becoming intelligent. User experience is increasingly
@@ -283,7 +284,7 @@ method is shown to work well with modern reinforcement learning based user model
 as well as models commonly used in cognitive science.</p>
 </div>
 
-<div class="w3-container" id="usa" style="display: none;">
+<div class="w3-container" id="usability" style="display: none;">
 <h1 class="w3-text-teal">Search AI Usability</h1>
 
 <h2 class="w3-text-teal">Toy Search Engine</h2>
@@ -402,24 +403,24 @@ the yellow backgrounds of feedback that can't be adequately explained by the mod
 Antti Kangasrääsiö, Dorota Głowacka, and Samuel Kaski.
 <b>Improving Controllability and Predictability of Interactive Recommendation Interfaces for Exploratory Search</b>.
 In <i>Proceedings of the 20th International Conference on Intelligent User Interfaces</i>, IUI'15, pp. 247-251. ACM, 2015.
-<a href="http://dl.acm.org/citation.cfm?doid=2678025.2701371">[access publication]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_postprint.pdf">[PDF]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_slides.pdf">[slides]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_video.mp4">[video]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_reviews.txt">[reviews]</a>
-<a href="https://research.aalto.fi/en/publications/improving-controllability-and-predictability-of-interactive-recommendation-interfaces-for-exploratory-search(0646a28f-e834-4c4e-a97e-29a92d7851e0).html">[publication info]</a>
-<a href="http://iui.acm.org/2015/index.html">[conference web page]</a>
+[<a href="http://dl.acm.org/citation.cfm?doid=2678025.2701371">access publication</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_postprint.pdf">PDF</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_slides.pdf">slides</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_video.mp4">video</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/IUI2015_reviews.txt">reviews</a>]
+[<a href="https://research.aalto.fi/en/publications/improving-controllability-and-predictability-of-interactive-recommendation-interfaces-for-exploratory-search(0646a28f-e834-4c4e-a97e-29a92d7851e0).html">publication info</a>]
+[<a href="http://iui.acm.org/2015/index.html">conference web page</a>]
 </p>
 <p>Antti Kangasrääsiö, Yi Chen, Dorota Glowacka, and Samuel Kaski.
 <b>Interactive Modeling of Concept Drift and Errors in Relevance Feedback</b>.
 In <i>Proceedings of the 24th Conference on User Modeling, Adaptation and Personalization</i>, UMAP'16, pp. 185-193. ACM, 2016.
-<a href="http://dx.doi.org/10.1145/2930238.2930243">[access publication]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_postprint.pdf">[PDF]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_poster.pdf">[poster]</a>
-<a href="http://arxiv.org/abs/1603.02609">[preprint]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_reviews.txt">[reviews]</a>
-<a href="https://research.aalto.fi/en/publications/interactive-modeling-of-concept-drift-and-errors-in-relevance-feedback(e51c41e3-e245-4d57-afa0-1d181f6c1329).html">[publication info]</a>
-<a href="http://www.um.org/umap2016/">[conference web page]</a>
+[<a href="http://dx.doi.org/10.1145/2930238.2930243">access publication</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_postprint.pdf">PDF</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_poster.pdf">poster</a>]
+[<a href="http://arxiv.org/abs/1603.02609">preprint</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/UMAP2016_reviews.txt">reviews</a>]
+[<a href="https://research.aalto.fi/en/publications/interactive-modeling-of-concept-drift-and-errors-in-relevance-feedback(e51c41e3-e245-4d57-afa0-1d181f6c1329).html">publication info</a>]
+[<a href="http://www.um.org/umap2016/">conference web page</a>]
 </p>
 
 <h2 class="w3-text-teal">Toy Search Engine FAQ</h2>
@@ -449,7 +450,7 @@ In <a href="https://github.com/akangasr/dissertationdemo">GitHub</a>.
 </p>
 </div>
 
-<div class="w3-container" id="cog" style="display: none;">
+<div class="w3-container" id="cognitive" style="display: none;">
 <h1 class="w3-text-teal">Cognitive Model Inference</h1>
 
 <h2 class="w3-text-teal">Cognitive Models</h2>
@@ -557,57 +558,57 @@ very low when compared to the known average duration of 250 ms.
 Antti Kangasrääsiö, Samuel Kaski.
 <b>Inverse Reinforcement Learning from Summary Data.</b>
 <i>Machine Learning</i>, vol. 107, pp. 1517-1535, 2018.
-<a href="https://doi.org/10.1007/s10994-018-5730-4">[access publication]</a>
-<a href="https://rdcu.be/14lt">[PDF]</a>
-<a href="https://arxiv.org/abs/1703.09700">[preprint]</a>
+[<a href="https://doi.org/10.1007/s10994-018-5730-4">access publication</a>]
+[<a href="https://rdcu.be/14lt">PDF</a>]
+[<a href="https://arxiv.org/abs/1703.09700">preprint</a>]
 -- presented in ECML PKDD 2018 journal track as plenary talk and poster
-<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_slides.pdf">[slides]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_poster.pdf">[poster]</a>
-<a href="http://www.ecmlpkdd2018.org/">[conference web page]</a>
+[<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_slides.pdf">slides</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_poster.pdf">poster</a>]
+[<a href="http://www.ecmlpkdd2018.org/">conference web page]</a>]
 </p>
 <p>
 Antti Kangasrääsiö, Jussi P.P. Jokinen, Antti Oulasvirta, Andrew Howes, Samuel Kaski.
 <b>Parameter Inference for Computational Cognitive Models with Approximate Bayesian Computation</b>
 In review, 2018.
-<a href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">[manuscript in dissertation]</a>
+[<a href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">manuscript in dissertation</a>]
 </p>
 <p>
 Antti Kangasrääsiö, Kumaripaba Athukorala, Andrew Howes, Jukka Corander, Samuel Kaski, Antti Oulasvirta.
 <b>Inferring Cognitive Models from Data using Approximate Bayesian Computation.</b>
 <i>In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems</i>, CHI'17, pp. 1295-1306. ACM, 2017.
-<a href="http://dl.acm.org/citation.cfm?id=3025576">[access publication]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/CHI2017_slides.pdf">[slides]</a>
-<a href="https://arxiv.org/abs/1612.00653">[preprint]</a>
-<a href="https://users.ics.aalto.fi/akangasr/publications/CHI2017_reviews.txt">[reviews]</a>
-<a href="https://research.aalto.fi/en/publications/inferring-cognitive-models-from-data-using-approximate-bayesian-computation(8bab3e91-13e0-4492-8eba-da42f63dee67).html">[publication info]</a>
-<a href="https://chi2017.acm.org/">[conference web page]</a>
+[<a href="http://dl.acm.org/citation.cfm?id=3025576">access publication</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/CHI2017_slides.pdf">slides</a>]
+[<a href="https://arxiv.org/abs/1612.00653">preprint</a>]
+[<a href="https://users.ics.aalto.fi/akangasr/publications/CHI2017_reviews.txt">reviews</a>]
+[<a href="https://research.aalto.fi/en/publications/inferring-cognitive-models-from-data-using-approximate-bayesian-computation(8bab3e91-13e0-4492-8eba-da42f63dee67).html">publication info</a>]
+[<a href="https://chi2017.acm.org/">conference web page</a>]
 </p>
 <p>
 Jarno Lintusaari, Henri Vuollekoski, Antti Kangasrääsiö, Kusti Skytén, Marko Järvenpää, Michael Gutmann, Aki Vehtari, Jukka Corander, Samuel Kaski.
 <b>ELFI: Engine for Likelihood Free Inference.</b>
 <i>Journal of Machine Learning Research</i>, vol. 19, (16):1-7, 2018.
-<a href="http://www.jmlr.org/papers/volume19/17-374/17-374.pdf">[access publication]</a>
-<a href="https://arxiv.org/abs/1708.00707">[preprint]</a>
-<a href="http://www.jmlr.org/papers/v19/">[journal volume]</a>
+[<a href="http://www.jmlr.org/papers/volume19/17-374/17-374.pdf">access publication</a>]
+[<a href="https://arxiv.org/abs/1708.00707">preprint</a>]
+[<a href="http://www.jmlr.org/papers/v19/">journal volume</a>]
 </p>
 
 <h2 class="w3-text-teal">Relevant Software</h2>
 <p>
 Engine for Likelihood-Free Inference (ELFI)
-<a href="https://elfi.readthedocs.io/en/latest/">[documentation]</a>
-<a href="https://github.com/elfi-dev/elfi">[source]</a>
+[<a href="https://elfi.readthedocs.io/en/latest/">documentation</a>]
+[<a href="https://github.com/elfi-dev/elfi">source</a>]
 </p>
 <p>
 Extensions / experiment repositories related to the above publications:
 </br>
 * ELFI experiment framework
-<a href="https://github.com/akangasr/elfie">[source]</a>
+[<a href="https://github.com/akangasr/elfie">source</a>]
 <br/>
 * ELFI reinforcement learning extension
-<a href="https://github.com/akangasr/elfirl">[source]</a>
+[<a href="https://github.com/akangasr/elfirl">source</a>]
 <br/>
 * ELFI cognitive model inference experiment
-<a href="https://github.com/akangasr/cogsciabc">[source]</a>
+[<a href="https://github.com/akangasr/cogsciabc">source</a>]
 <br/>
 (NB: these are not actively maintained any more and may depend on an old version of the main ELFI library)
 </p>
@@ -615,7 +616,7 @@ Extensions / experiment repositories related to the above publications:
 </div>
 
 
-<div class="w3-container" id="aut" style="display: none;">
+<div class="w3-container" id="author" style="display: none;">
 <h1 class="w3-text-teal">Author: Antti Kangasrääsiö</h1>
 <p>
 <b>Contact</b><br/>
@@ -644,6 +645,9 @@ research group</a>.
 Studied the agent-based modelling of complex decentralized systems, such as
 the dynamics of recyclables markets and frequency control in smart grids. Also
 mobile robotics, control theory, and computer systems in factory automation.
+Member of the
+<a href="https://www.aalto.fi/department-of-electrical-engineering-and-automation/information-technologies-in-industrial">
+Automation IT research group</a>.
 </p>
 <p>
 <b>Bachelor of Science (Tech.), 2011</b><br/>
@@ -663,21 +667,43 @@ I did my thesis on methods of adaptive control.
 <script>
 
 var page_elements = {
-  int: document.getElementById('int'),
-  pre: document.getElementById('usa'),
-  cog: document.getElementById('cog'),
-  aut: document.getElementById('aut')
+  intro: document.getElementById('intro'),
+  usability: document.getElementById('usability'),
+  cognitive: document.getElementById('cognitive'),
+  author: document.getElementById('author')
 }
+
+function change_page(page) {
+  window.history.pushState(page, 'Page: ' + page, '?p='+page);
+  display_page(page);
+}
+
+function set_page_from_url() {
+  var url = new URL(window.location.href);
+  var p = url.searchParams.get("p");
+  if (p in page_elements) {
+    display_page(p);
+  } else {
+    display_page('intro');
+  }
+}
+
+window.addEventListener('popstate', function(event) {
+    set_page_from_url();
+}, false);
 
 function display_page(page) {
   Object.keys(page_elements).map(function(key, index) {
     if (key == page) {
       page_elements[key].style.display = 'block';
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
     } else {
       page_elements[key].style.display = 'none';
     }
   });
 }
+
+set_page_from_url();
 
 function fullscreen() {
   document.getElementById('sidebar').style.display = 'none';
