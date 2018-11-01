@@ -39,33 +39,35 @@ html,body,h1,h2,h3,h4,h5,h6 {
 p {
   font-family: "Roboto", sans-serif;
   font-size: 20px;
+  max-width: 800px;
 }
 .figure {
   margin-top: 40px;
+  max-width: 800px;
   clear: both;
 }
 
 .search-ui {
-  width: 1000px;
+  width: 800px;
   height: 700px;
   border-style: solid;
   border-width: 1px;
   border-color: black;
 }
 .search-bar {
-  height: 50px;
+  height: 10%;
   clear: both;
   padding: 5px;
 }
 .search-top {
-  height: 300px;
+  height: 40%;
   clear: both;
   border-style: solid;
   border-width: 1px 0px 0px 0px;
   border-color: black;
 }
 .search-bottom {
-  height: 350px;
+  height: 50%;
   clear: both;
   border-style: solid;
   border-width: 1px 0px 0px 0px;
@@ -76,10 +78,8 @@ p {
   float: left;
 }
 .search-box {
-  width: 300px;
-  margin-left: 10px;
-  margin-right: 20px;
-  float: left;
+  width: 100%;
+  clear: both;
 }
 .search-selection {
   width: 20px;
@@ -89,7 +89,7 @@ p {
   float: left;
 }
 .search-history {
-  width: 35%;
+  width: 45%;
   height: 100%;
   float: left;
   overflow-y: scroll;
@@ -99,7 +99,7 @@ p {
   font-size: 20px;
 }
 .search-model {
-  width: 35%;
+  width: 45%;
   height: 100%;
   float: left;
   overflow-y: scroll;
@@ -131,6 +131,8 @@ p {
 }
 .search-result-title {
   font-size: 15px;
+  margin: 0px;
+  padding: 0px;
 }
 .search-result-title:hover {
   font-weight: bold;
@@ -153,6 +155,67 @@ p {
 .keyword-item-name {
   font-size: 15px;
   float: left;
+}
+
+@media only screen and (max-width: 1100px) {
+  [class="figure"] {
+    width: 100%;
+  }
+  [class="search-ui"] {
+    width: 100%;
+    height: auto;
+  }
+  [class="search-bar"] {
+    width: 100%;
+    height: 130px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: black;
+  }
+  [class="search-box-label"] {
+    clear: left;
+  }
+  [class="search-results"] {
+    float: none;
+    width: 100%;
+    height: 150px;
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+    border-color: black;
+  }
+  [class="search-item"] {
+    float: none;
+    width: 100%;
+    height: 150px;
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+    border-color: black;
+  }
+  [class="search-model"] {
+    float: none;
+    width: 100%;
+    height: 150px;
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+    border-color: green;
+  }
+  [class="search-history"] {
+    float: none;
+    width: 100%;
+    height: 150px;
+  }
+  [class="search-top"] {
+    clear: none;
+    width: 100%;
+    height: auto;
+    border-width: 0px;
+  }
+  [class="search-bottom"] {
+    clear: none;
+    width: 100%;
+    height: auto;
+    border-width: 0px;
+  }
 }
 </style>
 <body>
@@ -182,15 +245,15 @@ p {
 <h1 class="w3-text-teal">Introduction</h1>
 <p>Human-computer interaction is experiencing a large change as the services and
 applications we use are becoming intelligent. User experience is increasingly
-dependant on mathematical models that adapt to the feedback and instructions
+dependent on mathematical models that adapt to the feedback and instructions
 provided by the user. For example, the search
 engines we use adjust their recommendations based on our search history, and
 social media platforms select the displayed content based on a model of our
 interests. It is likely that in the future the vast majority of our services
-will become personalised.</p>
+will become personalized.</p>
 
 <p>This doctoral dissertation examines modern user modeling from two perspectives.
-The first focuses on search engines that perform online modelling
+The first focuses on search engines that perform online modeling
 of the user's interests. Such systems may suffer from
 various usability defects, such as difficulties in predicting how the user model
 and the search results will change in response to user actions.
@@ -223,7 +286,6 @@ as well as models commonly used in cognitive science.</p>
 <h2 class="w3-text-teal">Toy Search Engine</h2>
 <div class="search-ui" id="search-ui">
   <div class="search-bar" id="search-bar">
-      <div class="search-box-label" id="search-box-label">Search:</div>
       <input type="text" class="search-box" id="search-box" value="printer"></input>
       <div class="search-box-label" id="search-box-label">Show model</div>
       <input type="checkbox" class="search-selection" id="show-model-checkbox" onclick="toggle_show_model()" checked></input>
@@ -291,7 +353,7 @@ However, there is an easy way to make an interpretable model also dynamically
 interpretable: use the existing visualization to communicate predicted future
 model state while the user is deciding the value of the next feedback. This is
 demonstrated in the toy search engine, where predicted changes to the keyword
-weights are show while the user is deciding what feedback value to give for a
+weights are shown while the user is deciding what feedback value to give for a
 certain keyword.
 </p>
 
