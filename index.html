@@ -251,37 +251,38 @@ p {
 <p>Human-computer interaction is experiencing a large change as the services and
 applications we use are becoming intelligent. User experience is increasingly
 dependent on mathematical models that adapt to the feedback and instructions
-provided by the user. For example, the search
-engines we use adjust their recommendations based on our search history, and
-social media platforms select the displayed content based on a model of our
-interests. It is likely that in the future the vast majority of our services
-will become personalized.</p>
+provided by the user. For example, the search engines we use adjust their
+recommendations based on our search history, and social media platforms select
+the displayed content based on a model of our interests. It is likely that in
+the future the vast majority of our services will become personalized.</p>
 
-<p>This doctoral dissertation examines modern user modeling from two perspectives.
-The first focuses on search engines that perform online modeling
-of the user's interests. Such systems may suffer from
-various usability defects, such as difficulties in predicting how the user model
-and the search results will change in response to user actions.
-This is due to the user's mental model being unable to adequately approximate
-the dynamic behaviour of the search system. In order to
-improve the usability of such machine learning -heavy systems, methods are
-developed to improve the predictability of interaction, ability of the user to
-control the system, and ability of the user to detect possible interaction errors.
-The methods are shown to improve the usability of such search systems.</p>
+<p>The first half of this dissertation focuses on the usability of search
+engines that model the user's interests. The usability of intelligent systems
+has various challenges. This is because, for example, it may be difficult for
+the user to predict the effects of her actions, as the system behavior is
+determined by a complex mathematical algorithm. The dissertation presents methods
+related to both user modelling and user interfaces. The methods improve the
+usability of search engines that perform online modelling of the user's interests.
+The methods visualize the predicted effects of user actions and change the system
+to be easier to control, thus improving its usability. The methods also highlight
+possible inconsistencies in the user feedback, making it easier for the user to
+spot drift and errors in her feedback. The presented methods could be used to
+improve the usability of various existing systems for personalized search and
+recommendation.</p>
 
-<p>The second perspective focuses on learning more accurate and expressive user
-models. Common user models tend to be quite simple, due to the fact that
-automated inference is challenging for more complex models. For example, user
-interests are commonly predicted using simple regression or matrix completion
-models, which represent the user simply as a static probability distribution
-without any capability for strategic thinking or learning. It is likely that
-more expressive user models could enable more accurate predictions of the
-user's interest, or allow more suitable personalisation for each user. To lay
-groundwork for this goal, the dissertation proposes an inference method based
-on repeated simulations, which allows inference even for complex user models
-that are not amenable for traditional gradient-based inference methods. The
-method is shown to work well with modern reinforcement learning based user models,
-as well as models commonly used in cognitive science.</p>
+<p>The second half focuses on learning more accurate and expressive user
+models. Modern user models tend to be quite simple, when compared to the
+complexity of human decision-making. This is due to challenges in inferring
+the parameters of realistic user models. More expressive user models would
+enable more accurate predictions of the user's interests and allow more suitable
+personalisation for each user. The dissertation proposes a simulation-based
+inference method, which allows inference even for complex user models that are
+not amenable for traditional gradient-based inference methods. The method is
+efficient and able to infer the uncertainty of the parameter values as well.
+It is shown to work well with modern reinforcement learning based user models,
+as well as models commonly used in cognitive science. Using the proposed method
+it should be possible to use more realistic user models in variety of situations
+requiring personalization and inference of user interests.</p>
 </div>
 
 <div class="w3-container" id="usability" style="display: none;">
