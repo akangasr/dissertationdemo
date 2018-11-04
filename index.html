@@ -1047,11 +1047,10 @@ function display_history(feedback, model) {
   para.className = "search-history-header";
   historyDiv.appendChild(para);
   feedback.map(function(fb, idx) {
-    let pred_weight = model.Yhat.get(fb.feature, 0);
-    create_keyword_element_to(historyDiv, fb.feature, fb.value, 'history', idx, pred_weight);
+    let pred_value = model.Yhat.get(fb.feature, 0);
+    create_keyword_element_to(historyDiv, fb.feature, fb.value, 'history', idx, fb.weight, pred_value);
   })
 }
-
 
 function display_model(model) {
   let modelDiv = document.getElementById("search-model");
@@ -1094,7 +1093,7 @@ function color_for_error(err) {
   return "rgb(255,255,"+c+")";
 }
 
-function create_keyword_element_to(parent, kw_idx, value, type, fb_idx=undefined, pred_value=undefined) {
+function create_keyword_element_to(parent, kw_idx, value, type, fb_idx=undefined, fb_weight=undefined, pred_value=undefined) {
   let div = document.createElement("div");
   div.className = "keyword-item";
   let kw_name = VOCABULARY[kw_idx];
@@ -1105,7 +1104,11 @@ function create_keyword_element_to(parent, kw_idx, value, type, fb_idx=undefined
     text.setAttribute("title", "Click to remove feedback");
     text.style.cursor = "pointer";
   }
-  text.innerHTML = kw_name;
+  if (fb_weight !== undefined && fb_weight !== 1.0) {
+    text.innerHTML = kw_name + ' (x' + parseInt(fb_weight) + ')';
+  } else {
+    text.innerHTML = kw_name;
+  }
   let div_id = "keyword-div-" + type + '-' + kw_name + '-' + parseInt(Math.random()*1000000);
   let slider_id = "keyword-slider-" + type + '-' + kw_name + '-' + parseInt(Math.random()*1000000);
   if (pred_value) {
