@@ -14,12 +14,14 @@ html,body,h1,h2,h3,h4,h5,h6 {
   font-family: "Roboto", sans-serif;
 }
 .main {
+  margin-top: 100px;
   margin-left: 250px;
 }
 #topbar {
   height: 90px;
-  position: relative;
+  position: fixed;
   z-index: 100;
+  top: 0px;
   left: 0px;
   right: 0px;
   white-space: nowrap;
@@ -31,7 +33,7 @@ html,body,h1,h2,h3,h4,h5,h6 {
 }
 #sidemenu {
   width: 250px;
-  padding-top: 100px;
+  padding-top: 90px;
   top: 0px;
   bottom: 0px;
   height: inherit;
@@ -201,12 +203,14 @@ p {
 
 @media only screen and (max-width: 1100px) {
   .main {
+    margin-top: 0px;
     margin-left: 0px;
   }
   #topbar {
     height: auto;
     margin-top: 40px;
     white-space: normal;
+    position: relative;
   }
   #topbar h4 {
     font-size: 16px;
@@ -755,6 +759,7 @@ I did my thesis on methods of adaptive control.
 Samuel Kaski for the idea of making this page<br/>
 Tapio Heiskanen for the awesome mobile menu<br/>
 Eero Laukkanen for technical suggestions to improve mobile-friendlyness<br/>
+Hotloo Xiranood for additional CSS style suggestions<br/>
 Paul Blomstedt for spotting multiple typos<br/>
 Elli &lt;3
 </p>
