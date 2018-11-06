@@ -16,26 +16,64 @@ html,body,h1,h2,h3,h4,h5,h6 {
 .main {
   margin-left: 250px;
 }
-.w3-container {
-  position: relative;
-}
-.w3-bar {
+#topbar {
   height: 100px;
   overflow-x: scroll;
   position: relative;
   z-index: 100;
   left: 0px;
   right: 0px;
-}
-.w3-bar-item {
   white-space: nowrap;
 }
-.w3-sidebar {
+#sidemenu {
   width: 250px;
   padding-top: 100px;
   top: 0px;
   bottom: 0px;
   height: inherit;
+  display: block;
+}
+#topmenubar {
+  background-color: #f0f0f0;
+  display: none;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  z-index: 102;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+#topmenu {
+  display: none;
+  z-index: 101;
+  width: 100%;
+  padding-top: 0;
+  height: auto;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  bottom: auto;
+  right: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.top-menu-bar-button {
+    width: 100%;
+    padding: 10px 15px;
+    text-decoration: none;
+    padding-left: 40px;
+}
+.top-menu-bar-button span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+}
+.top-menu-bar-button span:last-child {
+    font-size: 24px;
+    display: none; /* Hide cross icon by default */
 }
 p {
   font-family: "Roboto", sans-serif;
@@ -47,7 +85,6 @@ p {
   max-width: 800px;
   clear: both;
 }
-
 .search-ui {
   width: 800px;
   height: 700px;
@@ -159,24 +196,57 @@ p {
 }
 
 @media only screen and (max-width: 1100px) {
-  [class="figure"] {
+  .main {
+    margin-left: 0px;
+  }
+  #topbar {
+    height: auto;
+    margin-top: 40px;
+    white-space: normal;
+  }
+  #topbar h4 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  #sidemenu {
+    display: none;
+  }
+  #topmenubar {
+    display: flex;
+  }
+  .w3-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .w3-container h1 {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .w3-container h2 {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .w3-container p {
+    font-size: 15px;
+  }
+  .figure {
     width: 100%;
   }
-  [class="search-ui"] {
+  .search-ui {
     width: 100%;
     height: auto;
   }
-  [class="search-bar"] {
+  .search-bar {
     width: 100%;
     height: 130px;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
     border-color: black;
   }
-  [class="search-box-label"] {
+  .search-box-label {
     clear: left;
   }
-  [class="search-results"] {
+  .search-results {
     float: none;
     width: 100%;
     height: 150px;
@@ -184,7 +254,7 @@ p {
     border-width: 1px 0px 0px 0px;
     border-color: black;
   }
-  [class="search-item"] {
+  .search-item {
     float: none;
     width: 100%;
     height: 150px;
@@ -192,7 +262,7 @@ p {
     border-width: 1px 0px 0px 0px;
     border-color: black;
   }
-  [class="search-model"] {
+  .search-model {
     float: none;
     width: 100%;
     height: 150px;
@@ -200,18 +270,18 @@ p {
     border-width: 1px 0px 0px 0px;
     border-color: green;
   }
-  [class="search-history"] {
+  .search-history {
     float: none;
     width: 100%;
     height: 150px;
   }
-  [class="search-top"] {
+  .search-top {
     clear: none;
     width: 100%;
     height: auto;
     border-width: 0px;
   }
-  [class="search-bottom"] {
+  .search-bottom {
     clear: none;
     width: 100%;
     height: auto;
@@ -221,16 +291,22 @@ p {
 </style>
 <body>
 
-<div class="top" id="topbar">
-  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
-    <h4 class="w3-bar-item">
-      <b>Machine Learning Methods for Interactive Search Interfaces and Cognitive Models</b>
-      <br/>Online demonstration / D.Sc. (tech.) dissertation, Antti Kangasrääsiö, Aalto University, 2018
-    </h4>
-  </div>
+<div class="top-menu-bar" id="topmenubar">
+  <a class="top-menu-bar-button" href="#menu" onclick="toggle_mobile_menu(event);">
+    <span>&#9776;</span>
+    <span>&times;</span>
+    Menu
+  </a>
 </div>
 
-<nav class="w3-sidebar w3-bar-block w3-large w3-theme-l5" id="sidebar">
+<div class="top w3-bar w3-theme w3-top w3-left-align w3-large" id="topbar">
+  <h4 class="w3-bar-item">
+    <b>Machine Learning Methods for Interactive Search Interfaces and Cognitive Models</b>
+    <br/>Online demonstration / D.Sc. (tech.) dissertation, Antti Kangasrääsiö, Aalto University, 2018
+  </h4>
+</div>
+
+<nav class="w3-sidebar w3-bar-block w3-large w3-theme-l5" id="sidemenu">
   <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('intro')">Introduction</a>
   <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('usability')">Search AI Usability</a>
   <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('cognitive')">Cognitive Model Inference</a>
@@ -240,11 +316,21 @@ p {
     href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">
     Read the book
   </a>
-  <a class="w3-bar-item w3-button w3-hover-black" onclick="fullscreen()">Fullscreen</a>
+</nav>
+
+<nav class="w3-sidebar w3-bar-block w3-large w3-theme-l5" id="topmenu">
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('intro')">Introduction</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('usability')">Search AI Usability</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('cognitive')">Cognitive Model Inference</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="change_page('author')">Author: Antti Kangasrääsiö</a>
+  <a
+    class="w3-bar-item w3-button w3-hover-black"
+    href="https://aaltodoc.aalto.fi/bitstream/handle/123456789/34495/isbn9789526082516.pdf?sequence=1&isAllowed=y">
+    Read the book
+  </a>
 </nav>
 
 <div class="main" id="main">
-<div id="showbars" style="display: none; cursor: pointer;" onclick="showbars()"><u>Show menu</u></div>
 
 <div class="w3-container" id="intro">
 <h1 class="w3-text-teal">Introduction</h1>
@@ -661,6 +747,7 @@ I did my thesis on methods of adaptive control.
 <h1 class="w3-text-teal">Thanks</h1>
 <p>
 Samuel Kaski for the idea of making this page<br/>
+Tapio Heiskanen for the awesome mobile menu<br/>
 Eero Laukkanen for technical suggestions to improve mobile-friendlyness<br/>
 Paul Blomstedt for spotting multiple typos<br/>
 Elli &lt;3
@@ -687,6 +774,7 @@ var page_elements = {
 function change_page(page) {
   window.history.pushState(page, 'Page: ' + page, '?p='+page);
   display_page(page);
+  toggle_mobile_menu();
 }
 
 function set_page_from_url() {
@@ -716,18 +804,29 @@ function display_page(page) {
 
 set_page_from_url();
 
-function fullscreen() {
-  document.getElementById('sidebar').style.display = 'none';
-  document.getElementById('topbar').style.display = 'none';
-  document.getElementById('main').style.marginLeft = '0px';
-  document.getElementById('showbars').style.display = 'block';
-}
+var sidebar = document.querySelector('#topmenu');
+var menu_bar_icon_bars = document.querySelector('.top-menu-bar-button span:first-child');
+var menu_bar_icon_cross = document.querySelector('.top-menu-bar-button span:last-child');
+var is_mobile_menu_visible = false;
 
-function showbars() {
-  document.getElementById('sidebar').style.display = 'block';
-  document.getElementById('topbar').style.display = 'block';
-  document.getElementById('main').style.marginLeft = '250px';
-  document.getElementById('showbars').style.display = 'none';
+function toggle_mobile_menu(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    var is_mobile = window.innerWidth <= 1100;
+    if (!is_mobile) {
+        return false;
+    }
+    is_mobile_menu_visible = !is_mobile_menu_visible;
+    var sidebar_display_value = is_mobile_menu_visible ? 'block' : 'none';
+    sidebar.style.display = sidebar_display_value;
+    if (is_mobile_menu_visible) {
+        menu_bar_icon_bars.style.display = 'none';
+        menu_bar_icon_cross.style.display = 'inline-block';
+    } else {
+        menu_bar_icon_bars.style.display = 'inline-block';
+        menu_bar_icon_cross.style.display = 'none';
+    }
 }
 
 // GLOBALS
