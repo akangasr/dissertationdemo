@@ -346,30 +346,28 @@ p {
 <h1 class="w3-text-teal">Introduction</h1>
 <p>Human-computer interaction is experiencing a large change as the services and
 applications we use are becoming intelligent. User experience is increasingly
-dependent on mathematical models that adapt to the feedback and instructions
+dependent on complex mathematical models that adapt to the feedback and instructions
 provided by the user. For example, the search engines we use adjust their
-recommendations based on our search history, and social media platforms select
-the displayed content based on a model of our interests. It is likely that in
-the future the vast majority of our services will become personalized.</p>
+recommendations based on our search history, and social media platforms and
+streaming services select the displayed content based on a model of our interests.
+It is likely that in the future the vast majority of our services will be personalized.</p>
 
-<p>The first half of this dissertation focuses on the usability of search
-engines that model the user's interests. The usability of intelligent systems
-has various challenges. This is because, for example, it may be difficult for
-the user to predict the effects of her actions, as the system behavior is
-determined by a complex mathematical algorithm. The dissertation presents methods
-related to both user modelling and user interfaces. The methods improve the
-usability of search engines that perform online modelling of the user's interests.
-The methods visualize the predicted effects of user actions and change the system
-to be easier to control, thus improving its usability. The methods also highlight
-possible inconsistencies in the user feedback, making it easier for the user to
-spot drift and errors in her feedback. The presented methods could be used to
-improve the usability of various existing systems for personalized search and
-recommendation.</p>
+<p>How to make an intelligent system understandable and easy to use, even though
+it uses complex algorithms to drive its behavior? The usability of intelligent
+systems has various challenges. This is because, for example, it may be difficult
+for the user to predict the effects of her actions. The dissertation presents methods
+to improve the usability of search engines that perform online modelling of the
+user's interests. The methods visualize the predicted effects of user actions
+and change the system dynamic behavior to be easier to control, thus improving
+its usability. The methods also highlight possible inconsistencies in the user
+feedback, making it easier for the user to spot inconsistencies in her feedback.
+The presented methods could be used to improve the usability of various existing
+systems for personalized search and recommendation.</p>
 
-<p>The second half focuses on learning more accurate and expressive user
-models. Modern user models tend to be quite simple, when compared to the
+<p>How to learn a realistic model of user behavior based on observations from
+the real world? Modern user models are still very simple compared to the
 complexity of human decision-making. This is due to challenges in inferring
-the parameters of realistic user models. More expressive user models would
+the parameters of more realistic user models. Realistic user models would
 enable more accurate predictions of the user's interests and allow more suitable
 personalisation for each user. The dissertation proposes a simulation-based
 inference method, which allows inference even for complex user models that are
@@ -377,9 +375,10 @@ not amenable for traditional gradient-based inference methods. The method is
 efficient and able to infer the uncertainty of the parameter values as well.
 It is shown to work well with modern reinforcement learning based user models,
 as well as models commonly used in cognitive science. Using the proposed method
-it should be possible to use more realistic user models in variety of situations
-requiring personalization and inference of user interests.</p>
+it could be possible to use more realistic user models in multiple situations
+which require personalization and inference of user interests.</p>
 </div>
+
 
 <div class="w3-container" id="usability" style="display: none;">
 <h1 class="w3-text-teal">Search AI Usability</h1>
@@ -410,38 +409,41 @@ requiring personalization and inference of user interests.</p>
 
 <h2 class="w3-text-teal">Model Visualization</h2>
 <p>
-It is common that intelligent systems rely on a user model for personalizing
-the user experience. However, only few systems actually allow the user to see
-or interact with the model. The toy search engine above allows you to see and
-interact with the search user model to explore the opportunities provided by
-direct access to the user model. This is called <i>interactive user modelling</i>.
+Intelligent systems rely on a user model for personalizing the user experience.
+However, only few systems actually allow the user to see or interact with the
+model. The toy search engine above is intended to demonstrate how an interactive
+user model could be implemented. This approach to user modelling is called
+<i>interactive user modelling</i>.
 </p>
 <p>
-In the context of search, one added benefit of interaction with the user model is
-that it allows one to take small local steps in the search space. In comparison,
-it might be more challenging to make these small steps when the only interaction
-method is to manually alter the keyword query.
-</p>
-<p>
-Visualizing the user model also has an effect on trust. Trust has a significant
-influence on how the user actually uses the system; poor trust may cause the
-user to abandon the system, even though using it would lead to superior results.
-In interactive user modelling the user is able to inspect the user model, which
-likely increases the trust in the system.
-</p>
-<p>
-The visualized model also has an effect on the user's mental model of the system
-behavior. Interactive user modelling is likely to improve the accuracy of the
-mental model the user has of the system, as the user has more relevant
+Interactive user modelling has various benefits. First, it allows the user to
+take small controlled steps in the search space. The visualization provides
+keyword suggestions, making it easier to spot relevant search keywords. As the
+user is able to inspect the user model, this increases the user's trust in the
+system. Interactive user modelling is also likely to improve the accuracy
+of the mental model the user has of the system, as the user has more relevant
 information available.
+</p>
+<p>
+Interactive user modelling is also related to the <i>interpretability</i> of
+models in general. As the user model may be very complex, it is important to
+design the visualization in such a way that the user is able to comprehend
+what the model state actually is at any given moment.
 </p>
 
 
 <h2 class="w3-text-teal">Interaction Predictability</h2>
 <p>
-Just because the user can see the model does not mean that the user can predict
-how her behavior will change the model. This means that a distinction needs to
-be made regarding the interpretability of the <i>model state</i> and the
+Interaction is predictable if the user is able to predict in advance what effects
+her actions will have on the system. Predictable systems are easier to use, as
+it is easier for the user to choose the most suitable action for each situation.
+For example, a car that would sometimes turn right when the drive steered left
+is not predictable.
+</p>
+<p>
+However, just because the user can see the model does not mean that the user can
+predict how her actions will change the model. This means that a distinction needs
+to be made regarding the interpretability of the <i>model state</i> and the
 interpretability of <i>model dynamics</i>. A visualized model has an interpretable
 state if the user can aswer questions such as "what are the features of the
 current model that have the largest effect on the predictions the model makes?"
@@ -450,49 +452,86 @@ answer to questions such as "how would the most important features of the model
 change if I would give this or that feedback?"
 </p>
 <p>
-However, there is an easy way to make an interpretable model also dynamically
-interpretable: use the existing visualization to communicate predicted future
-model state while the user is deciding the value of the next feedback. This is
-demonstrated in the toy search engine, where predicted changes to the keyword
-weights are shown while the user is deciding what feedback value to give for a
-certain keyword.
+The dissertation proposes an easy way to make any interpretable model also dynamically
+interpretable: use the existing visualization to display the predicted future
+model state while the user is deciding the value of the next feedback. This
+improves the interpretability of the model dynamics, and allows the user to
+construct a more adequate mental model of the system behavior as well. The
+method can also be used with any user model that can be visualized.
 </p>
-
+<p>
+This behavior is demonstrated in the toy search engine, where the predicted model
+state and search results are visualized as the user drags a keyword with mouse.
+</p>
 
 <h2 class="w3-text-teal">Model Controllability</h2>
 <p>
-One problem with controllability of the model is that the effect of additional
-feedback diminishes as the size of the observation dataset increases. In general,
-there is no guarantee that the feedback given by the user will have an effect
-of certain size to the model predictions, as the predictions are conditional to
-all previous feedback as well.
+A system is controllable if the user is able to make the system behave in the
+way the user wants. Systems that are more controllable are easier to use,
+as the user has more influence over the system behavior. For example, a car whose
+wheels would only turn half as much as normal would be less controllable and
+require more user effort for performing certain manoveurs.
 </p>
 <p>
-One approach to improving predictability is to alter the user model dynamics so
-that controllability is guaranteed to some degree in all situations. How this is
-done in practice is that instead of treating user feedback simply as "one more
-data point", it is treated as a requirement for the next model state. Thus we can
-use an optimization algorithm for choosing what feedback should be added to the
-model training dataset to achieve the end state desired by the user. This
-behavior is also demonstrated in the toy search engine, although it is best
-observable when there is a large amount of existing feedback.
+In interactive user modelling, one problem with the controllability of the user
+model is that the more feedback the user gives, the smaller the relative effect
+of each individual piece of feedback. In general, there is no guarantee that
+new feedback given by the user will have an effect of certain size to the model
+or the predictions, unless one consideres all the previous feedback as well.
+</p>
+<p>
+The dissertation proposes a method for guaranteeing model controllability to
+some degree in all situations. Instead of treating user feedback simply as "one
+more data point", it is treated as a specific requirement for the next model
+state. An optimization algorithm is then used for choosing what data points
+should be added to the model training dataset to achieve the end state desired
+by the user. The method can be used with any underlying user model for improving
+its controllability.
+</p>
+<p>
+This behavior is demonstrated in the toy search engine, where feedback weights
+are optimized so that the model conforms to the latest feedback. The weights are
+displayed as multipliers after the feedback name. The feature is naturally most
+active when there is a large amount of existing feedback.
 </p>
 
 <h2 class="w3-text-teal">Feedback Visualization</h2>
 <p>
-As discussed above, the resulting model behavior is a function of the entire
-training dataset. However, the training data may contain data that is either
-wrong, due to user errors, or deprecated, due to changes in the interests of
-the user.
+A system is transparent if the user can predict the system behavior from a
+visualization of the system state. For example, if a car dashboard would
+not have a fuel gauge, the driver could not predict when pressing the gas pedal
+would take her forward. Transparency contributes to the predictability of
+interaction and the ability of the user to control the system state.
 </p>
 <p>
-One way to make the user aware of the entire modelling context, and to enable
-the user find and correct errors in the data, is to visualize the training data
-to the user and allow interaction with it. In addition to this, the accuracy of
-each observation can be estimated and visualized to the user. By making outlying
-observations salient to the user, it is easier for the user to find and correct
-possible errors in the data. This is demonstrated in the toy search engine by
-the yellow backgrounds of feedback that can't be adequately explained by the model.
+As discussed above, the behavior of a system that models its users may depend
+on a long history of feedback given by the user. If the user is not aware of
+all the data that contributes to the behavior of the user model, this makes
+the system less transparent. Furthermore, part of this data might be wrong,
+due to errors in user feedback, or deprecated, due to changes in the interests
+of the user. It would be best if such observations could be identified and
+removed or corrected.
+</p>
+<p>
+The dissertation proposes a method to improve the transparency of the feedback
+history and make possible errors in the history salient to use user.
+This is done by visualizing the feedback history together with the estimated
+accuracy of each feedback. By making suspicious feedback salient, it is easier
+for the user to find and correct possible errors, analogously to how
+spell-checkers work in text editing software.
+</p>
+<p>
+This is demonstrated in the toy search engine by the yellow backgrounds of
+feedback that can't be adequately explained by the model. The feature is
+naturally most active when there exists contradicting feeback.
+</p>
+
+<h2 class="w3-text-teal">Future work</h2>
+<p>
+The methods work with interpretable user models, where model parameters make
+sense for the user. However, there are model families, such as neural networks,
+where the model parameters are not intelligible to the user. How could models
+like these be visualized and made predictable as well?
 </p>
 
 <h2 class="w3-text-teal">Relevant Publications</h2>
@@ -553,32 +592,33 @@ In <a href="https://github.com/akangasr/dissertationdemo">GitHub</a>.
 <h2 class="w3-text-teal">Cognitive Models</h2>
 <p>
 Cognitive models are a subset of user models distinguished by the explicit
-assumptions they make regarding the cognitive processes or capabilities of
-the user. That is, instead of simply fitting a regression model to the
-observations of the user behavior, the user is viewed as an intelligent and
-(mostly) rational decision-maker, with capabilities such as memory, vision,
-and ability to learn. These models, developed earlier mostly in the field of
-cognitive science, are the most credible computational representation we
-currently have of human cognition.
+assumptions they make of the cognitive processes and capabilities of
+the user. The user is viewed as an intelligent and (mostly) rational
+decision-maker, with capabilities such as memory, vision, and ability to learn.
+These models, developed earlier mostly in the field of cognitive science, are
+the most credible computational representation we currently have of human
+cognition.
 </p>
 <p>
 There are multiple motivating reasons for bringing these models out from the
-laboratories and incorporating them into interactive systems. First of all, they
+laboratories and incorporating them into real systems. First of all, they
 could offer superior predictions of user interests, goals and cognitive
 capabilities. These predictions could then allow the user interface and user
 experience to be personalized to each user in much higher detail than previously.
 For example, search results could be visualized differently for users who are
 fast at visual search, compared to those who are slower. Or users who are conducting
 exploratory search could be shown a different search interface than users who are
-performing directed known-item search.
+performing directed known-item search. The possibilities are endless, and
+limited only by our cabability to learn such complex models from realistic
+observation data.
 </p>
 
 <h2 class="w3-text-teal">Challenges with Inference</h2>
 <p>
-However, before cognitive models can be applied in real systems, efficient
-automated inference methods need to be developed. Cognitive models often have a
-large number of parameter values that affect the predictions made with the models.
-Inference means finding suitable values for these parameters, such that the
+Before cognitive models can be applied in real systems, efficient automated
+inference methods need to be developed. Cognitive models often have multiple
+parameter values that affect the predictions made with the models. Inference
+means finding suitable values for these parameters, such that the
 predictions made with the model agree with human behavior in the real world.
 Inference is often done by collecting a large amount of observation data from
 user experiments and then optimizing the parameter values to predict well on
@@ -588,9 +628,9 @@ this data.
 The main challenge with optimizing the parameter values of cognitive models is
 that the mathematical relation between the parameter values and the model
 predictions -- the <i>likelihood function</i> -- is often very complex and
-computationally expensive, or even practically impossible, to evaluate.
-Because of this, many common optimization approaches, such as gradient
-descent, can not be applied to cognitive model parameter inference.
+computationally expensive, or even impossible, to evaluate. Because of this,
+many common optimization approaches, such as gradient descent, can not be
+applied to cognitive model parameter inference.
 </p>
 
 <h2 class="w3-text-teal">Approximate Bayesian Computation and Bayesian Optimization</h2>
@@ -600,7 +640,7 @@ optimize a surrogate function that is closely related to it: the model predictio
 error. This is intuitive, as parameter values with high likelihood should lead
 to more accurate predictions, and vice versa. Technically, the Approximate Bayesian
 computation (ABC) framework provides us with the theory for approximating the
-likelihood function using only prediction errors.
+likelihood function using the prediction error function.
 </p>
 <p>
 However, generating predictions from the model with various parameter value
@@ -619,16 +659,18 @@ This is a significant improvement to the previous state-of-the-art, which
 comprised of manual tuning, grid search and various point-estimation methods
 that did not provide any estimates of parameter uncertainty.
 </p>
+<br/>
 <img src="abc.gif" alt="ABC inference process animation" class="figure"/>
 <p>
 The above animation illustrates how the inference process works. Parameter values
-to be evaluated are selected by the BO acquisition function. Predictions are
+to be evaluated are selected by the BO acquisition function (arrow). Predictions are
 generated from the model using these parameters. The discrepancy between the
 predictions and the observations (prediction error) is evaluated. The Gaussian
 process (GP) regression model for predicting discrepancy across the parameter space
 is updated based on the new observation, and the process continues. Parameter
 likelihood is estimated from the GP regression model.
 </p>
+<br/>
 <img src="abc.png" alt="ABC inference results" class="figure"/>
 <p>
 The plots above show the inference results for three parameters of a cognitive
@@ -638,6 +680,7 @@ identified, and the results are easy to interpret. Furthermore, the as the resul
 are in the form of a probability distribution, they can be used as a prior in a
 follow-up study.
 </p>
+<br/>
 <img src="grid.png" alt="Grid search inference results" class="figure"/>
 <p>
 In comparison, the plots above show the inference results from grid search using
@@ -648,6 +691,13 @@ interpret, and prior knowledge of credible parameter values can not be easily
 incorporated in the inference process. For example, the fixation duration
 parameter on the bottom left has inferred value of 175 milliseconds, which is
 very low when compared to the known average duration of 250 ms.
+</p>
+
+<h2 class="w3-text-teal">Future work</h2>
+<p>
+The method is able to perform inference for tens of parameters at a time, but
+scalability to higher dimensions is still an open problem. Advances in
+high-dimensional global optimization will likely help in solving this issue.
 </p>
 
 <h2 class="w3-text-teal">Relevant Publications</h2>
@@ -661,7 +711,7 @@ Antti Kangasrääsiö, Samuel Kaski.
 -- presented in ECML PKDD 2018 journal track as plenary talk and poster
 [<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_slides.pdf">slides</a>]
 [<a href="https://users.ics.aalto.fi/akangasr/publications/ECMLPKDD2018_poster.pdf">poster</a>]
-[<a href="http://www.ecmlpkdd2018.org/">conference web page]</a>]
+[<a href="http://www.ecmlpkdd2018.org/">conference web page</a>]
 </p>
 <p>
 Antti Kangasrääsiö, Jussi P.P. Jokinen, Antti Oulasvirta, Andrew Howes, Samuel Kaski.
@@ -727,29 +777,30 @@ firstname.lastname@iki.fi
 </p>
 <p>
 <b>Currently working at <a href="http://cai.fi/">Curious AI</a>, Helsinki</b><br/>
-Productization of AI related to system identification and control, natural
-language understanding and user interaction with said systems.
+Working on system identification and control, natural language understanding
+and user interaction with intelligent systems.
 </p>
 <p>
 <b>Doctor of Science (Tech.), 2018 (hopefully)</b><br/>
-Studied the usability of machine learning powered systems and inference of
-complicated user models with intractable likelihoods. Member of the
+Studied the usability of machine learning powered systems and simulator-based
+inference of realistic user models. Also studied start-ups and entrepreneurship
+in the <a href="https://doctoralschool.eitdigital.eu/">EIT Digital doctoral school</a>.
+Member of the
 <a href="https://research.cs.aalto.fi/pml/">Probabilistic Machine Learning
 research group</a>.
 </p>
 <p>
 <b>Master of Science (Tech.), 2013</b><br/>
-Studied the agent-based modelling of complex decentralized systems, such as
-the dynamics of recyclables markets and frequency control in smart grids. Also
-mobile robotics, control theory, and computer systems in factory automation.
-Member of the
+Studied agent-based modelling of complex decentralized systems, such as
+recyclables markets and smart grids. Also mobile robotics, control theory, and
+computer systems in factory automation. Member of the
 <a href="https://www.aalto.fi/department-of-electrical-engineering-and-automation/information-technologies-in-industrial">
 Automation IT research group</a>.
 </p>
 <p>
 <b>Bachelor of Science (Tech.), 2011</b><br/>
 Studied maths, control theory, programming languages and factory automation.
-I did my thesis on methods of adaptive control.
+I did my thesis on online system identification and control (adaptive control).
 </p>
 </div>
 
